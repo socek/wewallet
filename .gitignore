@@ -18,3 +18,4 @@ dist
 .baelfire.report
 .cache
 graph.*
+__pycache__

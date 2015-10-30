@@ -1,25 +1,9 @@
 def make_settings(settings, paths):
     project(settings, paths)
-    session(settings, paths)
     database(settings, paths)
-    alembic(settings, paths)
-    fanstatic(settings, paths)
-    auth(settings, paths)
+    # alembic(settings, paths)
+    # fanstatic(settings, paths)
     debug(settings, paths)
-
-
-def session(settings, paths):
-    settings['session.type'] = 'file'
-    settings['session.key'] = 'needtochangethis'
-    settings['session.secret'] = 'needtochangethistoo'
-    settings['session.cookie_on_exception'] = True
-
-    paths['session'] = {
-        'data_dir': ["%(data)s", 'sessions', 'data'],
-        'lock_dir': ["%(data)s", 'sessions', 'lock'],
-    }
-    settings['session.data_dir'] = '%(paths:session:data_dir)s'
-    settings['session.lock_dir'] = '%(paths:session:lock_dir)s'
 
 
 def database(settings, paths):
@@ -64,7 +48,3 @@ def debug(settings, paths):
     settings['pyramid.reload_templates'] = True
     settings['pyramid.debug_notfound'] = True
     settings['pyramid.debug_routematch'] = True
-
-
-def auth(settings, paths):
-    settings['auth_secret'] = 'somesecret'

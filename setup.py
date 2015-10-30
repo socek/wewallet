@@ -15,6 +15,8 @@ install_requires = [
     'paginate==0.5',
     'paginate_sqlalchemy==0.2.0',
     'morfdict',
+    'pyyaml',
+    'impaf==0.1',
 ]
 dependency_links = [
 ]
