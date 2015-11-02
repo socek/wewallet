@@ -17,6 +17,7 @@ install_requires = [
     'morfdict',
     'pyyaml',
     'impaf==0.1',
+    'hamlish_jinja',
 ]
 dependency_links = [
 ]
