@@ -24,20 +24,24 @@ class WeWalletApplication(Application):
             'Project related options',
         )
 
-        tasks.add_argument(
+        group = tasks.add_mutually_exclusive_group()
+        group.add_argument(
             '-d',
             '--develop',
-            dest='develop',
+            dest='task',
             help='Download requiretments.',
-            action="store_true",
+            action='store_const',
+            const='develop',
         )
-        tasks.add_argument(
+        group.add_argument(
             '-s',
             '--serve',
-            dest='serve',
+            dest='task',
             help='Start development server.',
-            action="store_true",
+            action='store_const',
+            const='serve',
         )
+
         tasks.add_argument(
             '-g',
             '--graph',
@@ -47,7 +51,7 @@ class WeWalletApplication(Application):
         )
 
     def run_command_or_print_help(self, args):
-        if args.serve or args.develop:
+        if args.task:
             task = self._get_task(args)
             try:
                 try:
@@ -63,12 +67,8 @@ class WeWalletApplication(Application):
             self.parser.print_help()
 
     def _get_task(self, args):
-        if args.serve:
-            return self.import_task(self.tasks['serve'])()
-        elif args.develop:
-            return self.import_task(self.tasks['develop'])()
-        else:
-            raise RuntimeError('No task selected!')
+        url = self.tasks[args.task]
+        return self.import_task(url)()
 
 
 def run():
