@@ -16,10 +16,26 @@ install_requires = [
     'paginate_sqlalchemy==0.2.0',
     'morfdict',
     'pyyaml',
-    'impaf==0.1',
+    'impaf==0.1.1',
     'hamlish_jinja',
+    'baelfire==0.3.1',
+    'bael.project==0.2',
 ]
+
+
+def create_link(name, version):
+    data = {
+        'prefix': 'https://github.com/socek',
+        'name': name,
+        'version': version,
+    }
+    template = '%(prefix)s/%(name)s/tarball/master#egg=%(name)s-%(version)s'
+    return template % data
+
 dependency_links = [
+    create_link('bael.project', '0.2'),
+    create_link('baelfire', '0.3.1'),
+    create_link('impaf', '0.1.1'),
 ]
 
 if __name__ == '__main__':
@@ -31,9 +47,12 @@ if __name__ == '__main__':
         install_requires=install_requires,
         dependency_links=dependency_links,
         include_package_data=True,
-        entry_points="""\
-        [paste.app_factory]
-            main = wewallet.application:application
-
-        """,
+        entry_points={
+            'console_scripts': (
+                'wwcmd = wewallet.console.cmd:run',
+            ),
+            'paste.app_factory': (
+                'main = wewallet.application:application',
+            )
+        }
     )
