@@ -4,6 +4,7 @@ def make_settings(settings, paths):
     # alembic(settings, paths)
     # fanstatic(settings, paths)
     debug(settings, paths)
+    auth(settings, paths)
 
 
 def database(settings, paths):
@@ -48,3 +49,7 @@ def debug(settings, paths):
     settings['pyramid.reload_templates'] = True
     settings['pyramid.debug_notfound'] = True
     settings['pyramid.debug_routematch'] = True
+
+
+def auth(settings, paths):
+    settings['auth_secret'] = 'changemeplz'
