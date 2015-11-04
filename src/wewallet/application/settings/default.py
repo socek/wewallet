@@ -5,6 +5,39 @@ def make_settings(settings, paths):
     # fanstatic(settings, paths)
     debug(settings, paths)
     auth(settings, paths)
+    logger(settings, paths)
+
+
+def logger(settings, paths):
+    settings['loggers'] = {
+        'loggers': {
+            'keys': 'root, sqlalchemy',
+        },
+        'handlers': {
+            'keys': 'console',
+        },
+        'formatters': {
+            'keys': 'generic',
+        },
+        'logger_root': {
+            'level': 'INFO',
+            'handlers': 'console',
+        },
+        'logger_sqlalchemy': {
+            'level': 'INFO',
+            'handlers': '',
+            'qualname': 'sqlalchemy.engine',
+        },
+        'handler_console': {
+            'class': 'StreamHandler',
+            'args': '(sys.stderr,)',
+            'level': 'NOTSET',
+            'formatter': 'generic',
+        },
+        'formatter_generic': {
+            'format': '%%(asctime)s %%(levelname)-5.5s [%%(name)s][%%(threadName)s] %%(message)s',
+        },
+    }
 
 
 def database(settings, paths):
