@@ -1,5 +1,6 @@
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
+from fanstatic import Fanstatic
 
 from impaf.application import Application as BaseApplication
 
@@ -44,6 +45,12 @@ class Application(BaseApplication):
         data = super()._get_config_kwargs()
         configure_authorization(data)
         return data
+
+    def _return_wsgi_app(self):
+        return Fanstatic(
+            super()._return_wsgi_app(),
+            **self.settings['fanstatic']
+        )
 
 
 application = Application('wewallet')

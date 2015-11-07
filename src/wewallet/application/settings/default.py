@@ -6,6 +6,7 @@ def make_settings(settings, paths):
     debug(settings, paths)
     auth(settings, paths)
     logger(settings, paths)
+    fanstatic(settings, paths)
 
 
 def logger(settings, paths):

@@ -1,7 +1,7 @@
-from impaf.controller import Controller
+from wewallet.application.controller import BaseController
 
 
-class HomeController(Controller):
+class HomeController(BaseController):
 
     renderer = 'wewallet.home:templates/index.haml'
 

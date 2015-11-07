@@ -1,0 +1,44 @@
+=need('jquery')
+=need('bootstrap')
+=need('main')
+=need('fontstyle')
+=need('flexslider')
+%html
+  %head
+    %title
+      We Wallet
+    %link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css"
+    %link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"
+  %body
+    -block navbar
+      %div.navbar-nav.navbar-inverse.navbar-fixed-top
+        %div.container
+          %div.navbar-header
+            %button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand href="#"
+              %img src="http://www.prepbootstrap.com/Content/images/shared/single-page-admin/logo30.png" alt=""
+              | BLOCKS Dashboard
+
+          %div.navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li.active
+                %a href="#"
+                  %i.icon-home.icon-white
+                  | Home
+              %li
+                %a href="#"
+                  %i.icon-th.icon-white
+                  | Tables
+              %li
+                %a href="#"
+                  %i.icon-lock.icon-white
+                  | Login
+              %li
+                %a href="#"
+                  %i.icon-user.icon-white
+                  | User
+    %div.container
+      -block body

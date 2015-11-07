@@ -20,6 +20,8 @@ install_requires = [
     'hamlish_jinja',
     'baelfire==0.3.1',
     'bael.project==0.2',
+    'fanstatic',
+    'js.jquery',
 ]
 
 
@@ -48,6 +50,9 @@ if __name__ == '__main__':
         dependency_links=dependency_links,
         include_package_data=True,
         entry_points={
+            'fanstatic.libraries': (
+                'application = wewallet.application.resources:library',
+            ),
             'console_scripts': (
                 'wwcmd = wewallet.console.cmd:run',
             ),
