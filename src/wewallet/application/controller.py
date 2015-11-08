@@ -1,9 +1,12 @@
-from impaf.controller import Controller
-
+from .plugins.formskit.controller import FormskitController
 from .resources import Resources
+from .requestable import Requestable
 
 
-class BaseController(Controller):
+class BaseController(
+    FormskitController,
+    Requestable,
+):
 
     def _generate_resources(self):
         self.resources = Resources()

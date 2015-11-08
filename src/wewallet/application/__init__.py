@@ -6,31 +6,27 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from impaf.application import Application as BaseApplication
+from .plugins.jinja2.application import Jinja2Application
 
 from .routing import Routing
 from .security import SecureFactory
 
 
-class Application(BaseApplication):
+class Application(
+    Jinja2Application,
+):
 
     class Config(BaseApplication.Config):
         routing_cls = Routing
         authorization_policy = ACLAuthorizationPolicy
 
     def _create_config(self):
-        def create_jinja2_settings():
-            self.settings['jinja2.extensions'] = [
-                'hamlish_jinja.HamlishExtension',
-            ]
-
         def add_debugtoolbar():
             if self.settings['debug']:
                 self.config.include('pyramid_debugtoolbar')
 
-        create_jinja2_settings()
         super()._create_config()
         add_debugtoolbar()
-        self.config.include('pyramid_jinja2')
 
     def _generate_registry(self, registry):
         def sqlalchemy():
@@ -38,7 +34,6 @@ class Application(BaseApplication):
             registry['db_engine'] = engine
             registry['db'] = sessionmaker(bind=engine)()
         super()._generate_registry(registry)
-        self.config.add_jinja2_renderer('.haml')
         sqlalchemy()
 
     def _get_config_kwargs(self):

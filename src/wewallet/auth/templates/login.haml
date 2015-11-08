@@ -1,0 +1,26 @@
+=need('jquery')
+=need('bootstrap')
+=need('fontstyle')
+=need('login')
+%html
+  %head
+    %title
+      We Wallet
+    %link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css"
+    %link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"
+  %body
+    %div.container
+      %div.row
+        %div.col-lg-offset-4.col-lg-4 style="margin-top:100px;"
+          %div.block-unit  style="text-align:center; padding:8px 8px 8px 8px;"
+            %p
+              Proszę się zalogować
+            %label.error for="password" generated="true"
+              Proszę podać hasło
+            %form.cmxform action="" method="get" id="signupForm" novalidate="novalidate"
+              %fieldset
+                %p
+                  %input type="text" placeholder="Username" name="username" id="username"
+                  %input type="password" placeholder="Password" name="password" id="password"
+                %input.submit.btn-success.btn.btn-large type="submit" value="Login"
+

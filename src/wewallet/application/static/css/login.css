@@ -1,7 +1,7 @@
 ﻿/*!
  * BLOCKS - Responsive Dashboard Theme
  *
- * Copyright 2013 
+ * Copyright 2013
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  * Created by: Carlos Esteban Alvarez
@@ -22,8 +22,8 @@ html{
 	background-size:cover;
 }
 body {
-	background:transparent;
-	min-height:100%;
+	background:#1f1f1f;
+	height:100%;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -52,10 +52,15 @@ select, textarea, input[type=text], input[type=password], input[type=datetime], 
 }
 
 /*FORM ERROR MESSAGE*/
-.error{ color:#b2c831;}
+.error{
+    color:#cb0808;
+}
 
 @media (max-width: 979px) {
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
+}
+p {
+    color: #ffffa9;
 }

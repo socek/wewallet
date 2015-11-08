@@ -3,3 +3,8 @@ wewallet.home.controllers:
         controller: HomeController
         route: home
         url: /
+wewallet.auth.controllers:
+    -
+        controller: LoginController
+        route: auth:login
+        url: /login

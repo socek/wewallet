@@ -7,3 +7,4 @@ class HomeController(BaseController):
 
     def make(self):
         self.context['x'] = 10
+        import ipdb ; ipdb.set_trace()

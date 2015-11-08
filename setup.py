@@ -24,6 +24,7 @@ install_requires = [
     'js.jquery',
     'alembic',
     'psycopg2',
+    'formskit',
 ]
 
 
