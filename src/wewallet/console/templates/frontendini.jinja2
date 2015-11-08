@@ -12,3 +12,7 @@ port = 6543
         {{name}} = {{value}}
     {% endfor -%}
 {% endfor %}
+[alembic]
+    {% for name, value in alembic.items() -%}
+        {{name}} = {{value}}
+    {% endfor %}

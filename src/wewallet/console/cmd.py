@@ -11,6 +11,8 @@ class WeWalletApplication(Application):
     tasks = {
         'develop': 'bael.project.develop:Develop',
         'serve': 'wewallet.console.serve:Serve',
+        'alembic-upgrade': 'wewallet.console.alembic:AlembicUpgrade',
+        'alembic-revision': 'wewallet.console.alembic:AlembicRevision',
     }
 
     def create_parser(self):
@@ -40,6 +42,22 @@ class WeWalletApplication(Application):
             help='Start development server.',
             action='store_const',
             const='serve',
+        )
+        group.add_argument(
+            '-u',
+            '--alembic-upgrade',
+            dest='task',
+            help='Run migrations.',
+            action='store_const',
+            const='alembic-upgrade',
+        )
+        group.add_argument(
+            '-r',
+            '--alembic-revision',
+            dest='task',
+            help='Create migration.',
+            action='store_const',
+            const='alembic-revision',
         )
 
         tasks.add_argument(

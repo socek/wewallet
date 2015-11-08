@@ -1,6 +1,9 @@
+from fanstatic import Fanstatic
+from morfdict import StringDict
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
-from fanstatic import Fanstatic
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from impaf.application import Application as BaseApplication
 
@@ -30,8 +33,13 @@ class Application(BaseApplication):
         self.config.include('pyramid_jinja2')
 
     def _generate_registry(self, registry):
+        def sqlalchemy():
+            engine = create_engine(self.settings['db:url'])
+            registry['db_engine'] = engine
+            registry['db'] = sessionmaker(bind=engine)()
         super()._generate_registry(registry)
         self.config.add_jinja2_renderer('.haml')
+        sqlalchemy()
 
     def _get_config_kwargs(self):
         def configure_authorization(data):
@@ -52,5 +60,21 @@ class Application(BaseApplication):
             **self.settings['fanstatic']
         )
 
+    def _populte_default_settings(self):
+        def morf_sql_url(obj, value):
+            if obj['type'] == 'sqlite':
+                value = 'sqlite:///%(paths:sqlite_db)s'
+            else:
+                value = (
+                    '%(type)s://%(login)s:%(password)s@%(host)s:%(port)s/'
+                    '%(name)s'
+                )
+            return value % obj
+
+        super()._populte_default_settings()
+        dbsettings = StringDict()
+        dbsettings['url'] = ''
+        dbsettings.set_morf('url', morf_sql_url)
+        self.settings['db'] = dbsettings
 
 application = Application('wewallet')

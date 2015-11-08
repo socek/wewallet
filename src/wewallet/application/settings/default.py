@@ -1,8 +1,6 @@
 def make_settings(settings, paths):
     project(settings, paths)
     database(settings, paths)
-    # alembic(settings, paths)
-    # fanstatic(settings, paths)
     debug(settings, paths)
     auth(settings, paths)
     logger(settings, paths)
@@ -12,26 +10,39 @@ def make_settings(settings, paths):
 def logger(settings, paths):
     settings['loggers'] = {
         'loggers': {
-            'keys': 'root, sqlalchemy',
+            'keys': 'root, sqlalchemy, alembic',
         },
         'handlers': {
-            'keys': 'console',
+            'keys': 'console, all',
         },
         'formatters': {
             'keys': 'generic',
         },
         'logger_root': {
             'level': 'INFO',
-            'handlers': 'console',
+            'handlers': 'console, all',
         },
         'logger_sqlalchemy': {
             'level': 'INFO',
-            'handlers': '',
+            'handlers': 'all',
             'qualname': 'sqlalchemy.engine',
+            'propagate': '0',
+        },
+        'logger_alembic': {
+            'level': 'INFO',
+            'handlers': 'all',
+            'qualname': 'alembic',
+            'propagate': '0',
         },
         'handler_console': {
             'class': 'StreamHandler',
             'args': '(sys.stderr,)',
+            'level': 'NOTSET',
+            'formatter': 'generic',
+        },
+        'handler_all': {
+            'class': 'FileHandler',
+            'args': "('%%(log_all)s', 'a')",
             'level': 'NOTSET',
             'formatter': 'generic',
         },
@@ -50,10 +61,10 @@ def database(settings, paths):
     # settings['db']['password'] = 'develop'
     # settings['db']['host'] = 'localhost'
     # settings['db']['port'] = '5432'
-    settings['db'] = {}
     settings['db']['type'] = 'sqlite'
     settings['db']['name'] = '%(project)s_develop'
     paths.set_path('sqlite_db', 'data', '%(db:name)s.db')
+    paths['db'] = settings['db']
 
 
 def project(settings, paths):
@@ -62,13 +73,6 @@ def project(settings, paths):
 
     paths.set_path('application', 'project', 'application')
     paths.set_path('routing', 'application', 'routing.yaml')
-
-
-def alembic(settings, paths):
-    paths['alembic'] = {
-        'versions': ["%(maindir)s", 'migrations'],
-        'ini': ["%(data)s", "alembic.ini"],
-    }
 
 
 def fanstatic(settings, paths):

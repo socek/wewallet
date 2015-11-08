@@ -22,6 +22,8 @@ install_requires = [
     'bael.project==0.2',
     'fanstatic',
     'js.jquery',
+    'alembic',
+    'psycopg2',
 ]
 
 
