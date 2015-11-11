@@ -17,6 +17,7 @@ from sqlalchemy import Column
 from sqlalchemy import Date
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
+from sqlalchemy import String
 
 
 def upgrade():
@@ -45,6 +46,10 @@ def upgrade():
             'date',
             Date(),
             nullable=False,
+        ),
+        Column(
+            'place',
+            String,
         ),
     )
 

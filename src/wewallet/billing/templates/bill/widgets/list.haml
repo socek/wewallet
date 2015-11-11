@@ -1,0 +1,11 @@
+%div.col-sm-12.col-lg-12
+  %h4
+    %strong << Rachunki
+  %table.display
+    %thead
+      %tr
+        %th << Data
+        %th << Miejsce
+    %tbody
+      -for item in widget.items
+        =item()

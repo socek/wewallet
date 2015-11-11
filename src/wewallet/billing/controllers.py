@@ -1,5 +1,7 @@
 from wewallet.application.controller import BaseController
 
+from .widgets import BillList
+
 
 class BillsController(BaseController):
 
@@ -7,4 +9,4 @@ class BillsController(BaseController):
     renderer = 'wewallet.billing:templates/bill/list.haml'
 
     def make(self):
-        pass
+        self.add_widget('list', BillList())
