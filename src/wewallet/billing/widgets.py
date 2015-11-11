@@ -1,5 +1,8 @@
+from wewallet.application.plugins.formskit.widget import FormWidget
 from wewallet.application.widget import SingleWidget
 from wewallet.utils.widgets import Link
+
+from .forms import CreateBillForm
 
 
 class BillItemWidget(SingleWidget):
@@ -32,3 +35,26 @@ class BillList(SingleWidget):
         self.add_widget('link', Link())
         for bill in self.drivers.bill.find_by_billing(1):
             self.add_item(bill)
+
+
+class CreateBillFormWidget(SingleWidget):
+    template = 'wewallet.billing:templates/bill/widgets/create_form.haml'
+
+    def __init__(self, billing):
+        self.billing = billing
+
+    def make(self):
+        self.add_form(CreateBillForm, billing=self.billing)
+
+    def add_form(
+        self,
+        formcls,
+        name='form',
+        widgetcls=FormWidget,
+        *args,
+        **kwargs
+    ):
+        form = formcls(self.request, *args, **kwargs)
+        widget = widgetcls(form)
+        self.add_widget(name, widget)
+        return form

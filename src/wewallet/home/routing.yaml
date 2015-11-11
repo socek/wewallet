@@ -13,3 +13,7 @@ wewallet.billing.controllers:
         controller: BillsController
         route: bill:list
         url: /bill
+    -
+        controller: CreateBillController
+        route: bill:create
+        url: /bill/create

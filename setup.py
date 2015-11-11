@@ -25,6 +25,7 @@ install_requires = [
     'alembic',
     'psycopg2',
     'formskit',
+    'pyramid_beaker',
 ]
 
 

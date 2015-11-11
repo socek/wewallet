@@ -1,12 +1,12 @@
 from pyramid.session import check_csrf_token
 
-from implugin.beaker import BeakerRequestable
-
 from formskit import Form
 from formskit.formvalidators import FormValidator
 
+from wewallet.application.requestable import Requestable
 
-class PostForm(Form, BeakerRequestable):
+
+class PostForm(Form, Requestable):
 
     def __init__(self, request):
         self.feed_request(request)

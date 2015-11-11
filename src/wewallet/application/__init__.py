@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 from impaf.application import Application as BaseApplication
 from .plugins.jinja2.application import Jinja2Application
+from .plugins.beaker import BeakerApplication
 
 from .routing import Routing
 from .security import SecureFactory
@@ -14,6 +15,7 @@ from .security import SecureFactory
 
 class Application(
     Jinja2Application,
+    BeakerApplication,
 ):
 
     class Config(BaseApplication.Config):

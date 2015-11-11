@@ -1,8 +1,12 @@
 from .plugins.sqlalchemy.requestable import SqlalchemyRequestable
+from .plugins.beaker import BeakerRequestable
 from .drivers import WeWalletDriverHolder
 
 
-class Requestable(SqlalchemyRequestable):
+class Requestable(
+    SqlalchemyRequestable,
+    BeakerRequestable,
+):
 
     def generate_drivers(self):
         self.drivers = WeWalletDriverHolder(self.database)

@@ -45,11 +45,11 @@ class Menu(SingleWidget):
     def make(self):
         self.add_item(
             'home',
-            'Home',
+            'Główna',
         )
         self.add_item(
             'bill:list',
-            'Tables',
+            'Rachunki',
         )
         self.add_item(None, 'Login')
         self.add_item(None, 'User')
