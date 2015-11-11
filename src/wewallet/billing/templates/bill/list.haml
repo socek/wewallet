@@ -1,0 +1,49 @@
+=need('table')
+-extends "wewallet.application:templates/base.haml"
+-block body
+  %div.row
+    %div.col-sm-12.col-lg-12
+      %h4
+        %strong << Basic Table
+      %table.display
+        %thead
+          %tr
+            %th << Band or Group
+            %th << Name
+            %th << Instrument
+            %th << Influence
+            %th << Awesome
+        %tbody
+          %tr.odd
+            %td << Queen
+            %td << Brian May
+            %td << Guitar
+            %td.center << 7
+            %td.center << 9
+          %tr.even
+            %td << Queen
+            %td << Roger Taylor
+            %td << Drums
+            %td.center << 5
+            %td.center << 7
+          %tr.odd
+            %td << Beatles
+            %td << Paul McCartney
+            %td << Guitar &amp; Piano
+            %td.center << 8
+            %td.center << 9
+          %tr.even
+            %td << Adele
+            %td << Adele
+            %td << None
+            %td.center << 8
+            %td.center << 8
+          %tr.odd
+            %td << Britney Spears
+            %td << Britney Spears
+            %td << None
+            %td.center << 7
+            %td.center << 5
+
+
+

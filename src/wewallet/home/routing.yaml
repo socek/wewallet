@@ -8,3 +8,8 @@ wewallet.auth.controllers:
         controller: LoginController
         route: auth:login
         url: /login
+wewallet.billing.controllers:
+    -
+        controller: BillsController
+        route: bill:list
+        url: /bill

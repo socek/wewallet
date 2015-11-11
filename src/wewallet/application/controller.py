@@ -2,6 +2,8 @@ from .plugins.formskit.controller import FormskitController
 from .resources import Resources
 from .requestable import Requestable
 
+from wewallet.topmenu.widgets import Menu
+
 
 class BaseController(
     FormskitController,
@@ -15,3 +17,10 @@ class BaseController(
         super()._create_context()
         self._generate_resources()
         self.context['need'] = self.resources.need
+
+    def _before_make(self):
+        super()._before_make()
+        self.add_widget(
+            'topmenu',
+            Menu(getattr(self, 'topmenu_highlight', None)),
+        )

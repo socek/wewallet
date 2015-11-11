@@ -1,4 +1,4 @@
-"""empty message
+"""Creating users.
 
 Revision ID: 2d7e457c5a1
 Revises:

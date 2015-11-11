@@ -5,6 +5,7 @@ from .widgets import UserWidget
 
 class HomeController(BaseController):
 
+    topmenu_highlight = 'home'
     renderer = 'wewallet.home:templates/index.haml'
 
     def make(self):

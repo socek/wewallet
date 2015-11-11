@@ -18,27 +18,10 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.navbar-brand href="#"
+            %a.navbar-brand href="{{route_path('home')}}"
               %img src="http://www.prepbootstrap.com/Content/images/shared/single-page-admin/logo30.png" alt=""
               | BLOCKS Dashboard
 
-          %div.navbar-collapse.collapse
-            %ul.nav.navbar-nav
-              %li.active
-                %a href="#"
-                  %i.icon-home.icon-white
-                  | Home
-              %li
-                %a href="#"
-                  %i.icon-th.icon-white
-                  | Tables
-              %li
-                %a href="#"
-                  %i.icon-lock.icon-white
-                  | Login
-              %li
-                %a href="#"
-                  %i.icon-user.icon-white
-                  | User
+          =topmenu()
     %div.container
       -block body

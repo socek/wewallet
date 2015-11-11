@@ -61,6 +61,7 @@ class DriverHolder(object):
 
 
 def driver(fun):
+    @property
     @wraps(fun)
     def wrapper(self):
         return self.feeded_driver(fun(self))
