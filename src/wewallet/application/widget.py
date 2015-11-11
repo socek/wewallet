@@ -1,5 +1,5 @@
-from .plugins.jinja2.widget import SingleWidget as BaseSingleWidget
 from .plugins.jinja2.widget import MultiWidget as BaseMultiWidget
+from .plugins.jinja2.widget import SingleWidget as BaseSingleWidget
 
 from .requestable import Requestable
 

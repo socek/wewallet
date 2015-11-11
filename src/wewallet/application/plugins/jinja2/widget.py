@@ -17,7 +17,17 @@ class SingleWidget(BaseWidget):
     def get_template(self):
         return self.template
 
+    def _before_make(self):
+        pass
+
+    def add_widget(self, name, obj):
+        obj.feed_request(self.request)
+        self.context[name] = obj
+
     def __call__(self, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
+        self._before_make()
         self.make(*args, **kwargs)
         return self.render(self.get_template())
 

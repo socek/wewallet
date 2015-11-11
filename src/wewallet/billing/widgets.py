@@ -1,4 +1,5 @@
 from wewallet.application.widget import SingleWidget
+from wewallet.utils.widgets import Link
 
 
 class BillItemWidget(SingleWidget):
@@ -28,5 +29,6 @@ class BillList(SingleWidget):
         self.items.append(obj)
 
     def make(self):
+        self.add_widget('link', Link())
         for bill in self.drivers.bill.find_by_billing(1):
             self.add_item(bill)

@@ -3,6 +3,7 @@ from .resources import Resources
 from .requestable import Requestable
 
 from wewallet.topmenu.widgets import Menu
+from wewallet.utils.widgets import Link
 
 
 class BaseController(
@@ -23,4 +24,8 @@ class BaseController(
         self.add_widget(
             'topmenu',
             Menu(getattr(self, 'topmenu_highlight', None)),
+        )
+        self.add_widget(
+            'link',
+            Link(),
         )
