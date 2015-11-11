@@ -1,5 +1,7 @@
 from wewallet.application.controller import BaseController
 
+from .widgets import UserWidget
+
 
 class HomeController(BaseController):
 
@@ -7,4 +9,8 @@ class HomeController(BaseController):
 
     def make(self):
         self.context['x'] = 10
-        import ipdb ; ipdb.set_trace()
+        users = self.context['users'] = []
+        for user in self.drivers.auth.find_all():
+            widget = UserWidget(user)
+            widget.feed_request(self.request)
+            users.append(widget)
