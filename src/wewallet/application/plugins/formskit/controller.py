@@ -8,8 +8,8 @@ class FormskitController(Controller):
     def add_form(
         self,
         formcls,
-        name='form',
         widgetcls=FormWidget,
+        name='form',
         *args,
         **kwargs
     ):

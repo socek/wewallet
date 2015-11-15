@@ -12,7 +12,7 @@ class FormWidget(MultiWidget):
         password = 'wewallet.application.plugins.formskit:templates/password.jinja2'
         select = 'wewallet.application.plugins.formskit:templates/select.jinja2'
         hidden = 'wewallet.application.plugins.formskit:templates/hidden.jinja2'
-        submit = 'wewallet.application.plugins.formskit:templates/submit.jinja2'
+        submit = 'wewallet.application.plugins.formskit:templates/submit.haml'
 
     def __init__(self, form):
         super().__init__()
@@ -69,7 +69,8 @@ class FormWidget(MultiWidget):
         data['disabled'] = disabled
         data['autofocus'] = autofocus
         data.update(kwargs)
-        return self.render_for(self.Templates[input_type], data)
+        template = getattr(self.Templates, input_type)
+        return self.render_for(template, data)
 
     def hidden(self, name):
         data = self._base_input(name)
@@ -93,3 +94,10 @@ class FormWidget(MultiWidget):
         data['error'] = True if self.form.success is False else False
         data['messages'] = self.form.get_error_messages()
         return self.render_for(self.Templates.form_error, data)
+
+    def __call__(self, *args, **kwargs):
+        data = {}
+        data['args'] = args
+        data['kwargs'] = kwargs
+        data['widget'] = self
+        return self.render_for(self.template, data)

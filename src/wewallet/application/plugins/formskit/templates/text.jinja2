@@ -1,12 +1,10 @@
-<div class="form-group">
-    <label>{{label}}:</label>
-    {% include templates['field_error'] %}
+<input
+    value="{{value}}"
+    name="{{name}}"
+    id="{{id}}"
+    type="text"
+    placeholder="{{label}}"
+    {%- if disabled %} disabled=disabled {% endif -%}
+    >
 
-    <input
-        class="form-control"
-        value="{{value}}"
-        name="{{name}}"
-        id="{{id}}"
-        {%- if disabled %} disabled=disabled {% endif -%}
-        >
-</div>
+{% include templates['field_error'] %}

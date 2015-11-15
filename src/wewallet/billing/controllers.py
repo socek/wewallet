@@ -1,6 +1,7 @@
 from wewallet.application.controller import BaseController
 
 from .widgets import BillList, CreateBillFormWidget
+from .forms import CreateBillForm
 
 
 class BaseBillController(BaseController):
@@ -21,4 +22,11 @@ class CreateBillController(BaseBillController):
 
     def make(self):
         billing = self.drivers.billing.get_by_id(1)
-        self.add_widget('form', CreateBillFormWidget(billing))
+        form = self.add_form(
+            CreateBillForm,
+            CreateBillFormWidget,
+            billing=billing,
+        )
+
+        if form.validate():
+            return self.redirect('bill:list')
